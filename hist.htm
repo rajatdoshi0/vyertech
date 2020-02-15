@@ -1,0 +1,27 @@
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src="plotly-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+	<div id='myDiv'>
+		<script>
+		$.post('/submit_form',  // url
+           {}, // data to be submit
+           function(data, status, xhr) {   // success callback function
+            make_hist(data); // TODO(Rajat): implement make_hist using using data, which should be a list of ints
+            },'json'); // response data format
+
+			function make_hist(timeArr){
+				var trace = {
+				     x: timeArr,
+				     type: 'histogram',
+				};
+				var data = [trace];
+				Plotly.newPlot('myDiv', data);				
+			}	
+		</script>
+	</div>
+</body>
